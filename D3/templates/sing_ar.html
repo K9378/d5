@@ -1,0 +1,20 @@
+
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+{{ news.name }}
+{% endblock title %}
+
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+{{ post.time_in|date:"d.m.Y" }}
+<hr>{{ post.text|censor }}<hr>
+{% if perms.News.delete_post %}
+<a href="{{ post.id }}/delete/">Delete</a><hr>
+{% endif %}
+{% if perms.News.change_post %}
+<a href="{{ post.id }}/edit/">Edit</a><hr>
+{% endif %}
+{% endblock content %}
